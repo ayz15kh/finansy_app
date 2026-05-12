@@ -10,13 +10,13 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from aiogram.types import WebAppInfo
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.fsm.context import FSMContext
+import config
 
-API_TOKEN = "8689158479:AAG7Bwv5Rhy1nab33EmiI7j2DtFKfF8zYH0"
 
-bot = Bot(token=API_TOKEN)
+bot = Bot(token=config.API_TOKEN)
 dp = Dispatcher()
 
-DB_NAME = "finance.db"
+DB_NAME = config.DB
 
 
 # =======================
@@ -98,7 +98,7 @@ async def web_app_handler(message: Message):
 
 def main_menu():
     kb = InlineKeyboardBuilder()
-    kb.button(text="🌐 Открыть приложение",web_app=WebAppInfo(url="https://ayz15kh.github.io/app"))
+    kb.button(text="🌐 Открыть приложение",web_app=WebAppInfo(url=config.WEBAPP_URL))
     kb.button(text="💰 Бюджет", callback_data="budget")
     kb.button(text="🎯 Цели", callback_data="goals")
     kb.button(text="📈 Инвестиции", callback_data="invest")
